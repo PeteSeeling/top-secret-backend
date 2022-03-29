@@ -14,7 +14,6 @@ CREATE TABLE users (
     id BIGINT ALWAYS GENERATED AS IDENTITY PRIMARY KEY,
     email TEXT NOT NULL,
     password_hash TEXT NOT NULL,
-    first_name TEXT,
-    last_name TEXT
+  
 )
 
