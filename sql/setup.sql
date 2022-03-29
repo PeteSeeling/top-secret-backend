@@ -7,12 +7,14 @@ CREATE TABLE secrets(
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
-    created_at TIMESTAMP
+    created_at TIMESTAMP 
 )
 
 CREATE TABLE users (
     id BIGINT ALWAYS GENERATED AS IDENTITY PRIMARY KEY,
-    username TEXT NOT NULL,
+    email TEXT NOT NULL,
     password_hash TEXT NOT NULL,
+    first_name TEXT,
+    last_name TEXT
 )
 
