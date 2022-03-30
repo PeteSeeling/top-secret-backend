@@ -25,7 +25,7 @@ describe('top-secret-backend routes', () => {
   it('signs in an existing user', async () => {
     const user = await UserService.create({
       email:'pete@gmail.com',
-      password: 'pleaseWork',
+      passwordHashed: this.passwordHashed,
     });
     const res = await request(app)
       .post('/api/v1/users/signin')
