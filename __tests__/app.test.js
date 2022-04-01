@@ -25,7 +25,7 @@ describe('top-secret-backend routes', () => {
   it('signs in an existing user', async () => {
     const user = await UserService.create({
       email:'pete@gmail.com',
-      password: this.password,
+      password: 'pleaseWork',
     });
 
     const res = await request(app)
