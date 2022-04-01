@@ -16,7 +16,7 @@ describe('top-secret-backend routes', () => {
 
   it('signs up a user with email/password via POST', async() => {
     const res = await request(app)
-      .post('/api/v1/users/sessions')
+      .post('/api/v1/users')
       .send({ email: 'pete@gmail.com', password:'pleaseWork' });
 
     expect(res.body).toEqual({ id: expect.any(String), email: 'pete@gmail.com', passwordHashed: expect.any(String) });
@@ -36,7 +36,6 @@ describe('top-secret-backend routes', () => {
       message: 'Signed in successfully!',
       user,
     });
- 
   });
   
 
