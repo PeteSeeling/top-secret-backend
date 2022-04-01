@@ -25,14 +25,15 @@ describe('top-secret-backend routes', () => {
   it('signs in an existing user', async () => {
     const user = await UserService.create({
       email:'pete@gmail.com',
-      passwordHashed: this.passwordHashed,
+      password: this.password,
     });
+
     const res = await request(app)
-      .post('/api/v1/users/signin')
+      .post('/api/v1/users/sessions')
       .send({ email: 'pete@gmail.com', password:'pleaseWork' });
 
     expect(res.body).toEqual({
-      message: 'Sign in succesful',
+      message: 'Signed in successfully!',
       user,
     });
  
