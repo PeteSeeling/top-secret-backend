@@ -57,9 +57,6 @@ describe('top-secret-backend routes', () => {
       message:'Signed Out Successfully'
     });
 
-
   });
-
-  
 
 });
