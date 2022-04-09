@@ -36,9 +36,30 @@ describe('top-secret-backend routes', () => {
       message: 'Signed in successfully!',
       user,
 
-      
     });
   });
+
+  it('log out  a user by deleting cookie', async() => {
+    let user = await UserService.create({
+      email:'pete@gmail.com',
+      password:'pleaseWork',
+    });
+
+    user = await UserService.signIn({
+      email:'pete@gmail.com',
+      password:'pleaseWork',
+    });
+    const res = await request(app)
+      .delete('/api/v1/users/sessions')
+      .send(user);
+
+    expect(res.body).toEqual({
+      message:'Signed Out Successfully'
+    });
+
+
+  });
+
   
 
 });
