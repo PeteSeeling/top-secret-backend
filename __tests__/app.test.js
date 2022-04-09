@@ -19,7 +19,7 @@ describe('top-secret-backend routes', () => {
       .post('/api/v1/users')
       .send({ email: 'pete@gmail.com', password:'pleaseWork' });
 
-    expect(res.body).toEqual({ id: expect.any(String), email: 'pete@gmail.com', passwordHashed: expect.any(String) });
+    expect(res.body).toEqual({ id: expect.any(String), email: 'pete@gmail.com', hashedPassword: expect.any(String) });
   });
     
   it('signs in an existing user', async () => {
@@ -35,6 +35,8 @@ describe('top-secret-backend routes', () => {
     expect(res.body).toEqual({
       message: 'Signed in successfully!',
       user,
+
+      
     });
   });
   
