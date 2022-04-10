@@ -18,8 +18,7 @@ jobs:
       env:
         CI: true
         DATABASE_URL: postgres://alchemy:alchemy@postgres:5432/alchemy
-        API_URL: http://localhost
-        PORT: 7890
-         SALT_ROUNDS: 9
-        COOKIE_NAME: cookie1
-  JWT_SECRETS: secret1
+        COOKIE_NAME: ${{ secrets.COOKIE_NAME }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        SALT_ROUNDS: ${{ secrets.SALT_ROUNDS }}
+        

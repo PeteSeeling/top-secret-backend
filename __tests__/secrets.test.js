@@ -1,7 +1,7 @@
 const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
-const app = require('../lib/services/UserService');
+const app = require('../lib/app');
 const UserService = require('../lib/services/UserService');
 
 describe('top-secret-routes', () => {
@@ -21,13 +21,7 @@ describe('top-secret-routes', () => {
       password:'pleaseWork',
     });
 
-    await agent.post('api/v1/users/sessions')
-      .send({
-        email:'pete@gmail.com',
-        password:'pleaseWork',
-      });
-
-    const res = await agent.post('api/v1/secrets')
+    const res = await agent.post('/api/v1/secrets')
       .send({
         title:'New Secret',
         description: 'new secret text'
