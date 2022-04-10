@@ -59,44 +59,6 @@ describe('top-secret-backend routes', () => {
 
   });
 
-  it('should allow user to get all secrets', async () => {
-    const agent = request.agent(app);
-
-    await UserService.create({
-      email:'pete@gmail.com',
-      password: 'pleaseWork',
-    });
-
-    await agent
-      .post('/api/v1/secrets')
-      .send({
-        title:'New Secret',
-        description: 'new secret text',
-      });
-
-    await agent
-      .post('/api/v1/secrets')
-      .send({
-        title:'New Secret 2',
-        description: 'new secret text 2',
-      });
-
-    const res = await agent.get('/api/v1/secrets');
-
-    expect(res.body).toEqual([
-      { 
-        title:'New Secret',
-        description: 'new secret text',
-        createdAt: expect.any(String),
-        id: expect.any(String)
-      },
-      { 
-        title:'New Secret 2',
-        description: 'new secret text 2',
-        createdAt: expect.any(String),
-        id: expect.any(String)
-      }
-    ]); 
-  });
+  
 
 });
