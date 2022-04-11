@@ -15,28 +15,53 @@ describe('top-secret-backend routes', () => {
   });
 
   it('signs up a user with email/password via POST', async() => {
+
     const res = await request(app)
-      .post('/api/v1/users/signup')
+      .post('/api/v1/users')
       .send({ email: 'pete@gmail.com', password:'pleaseWork' });
 
-    expect(res.body).toEqual({ id: expect.any(String), email: 'pete@gmail.com', passwordHashed: expect.any(String) });
+    expect(res.body).toEqual({ id: expect.any(String), email: 'pete@gmail.com' });
   });
     
   it('signs in an existing user', async () => {
+
     const user = await UserService.create({
       email:'pete@gmail.com',
-      passwordHashed: this.passwordHashed,
+      password: 'pleaseWork',
     });
+
     const res = await request(app)
-      .post('/api/v1/users/signin')
+      .post('/api/v1/users/sessions')
       .send({ email: 'pete@gmail.com', password:'pleaseWork' });
 
     expect(res.body).toEqual({
-      message: 'Sign in succesful',
-      user,
+      message: 'Signed in successfully!',
+      user
+
     });
- 
   });
+
+  it('log out  a user by deleting cookie', async() => {
+    let user = await UserService.create({
+      email:'pete@gmail.com',
+      password:'pleaseWork',
+    });
+
+    user = await UserService.signIn({
+      email:'pete@gmail.com',
+      password:'pleaseWork',
+    });
+    
+    const res = await request(app)
+      .delete('/api/v1/users/sessions')
+      .send(user);
+
+    expect(res.body).toEqual({
+      message:'Signed Out Successfully'
+    });
+
+  });
+
   
 
 });
