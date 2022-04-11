@@ -15,20 +15,13 @@ describe('top-secret-routes', () => {
   });
 
   it('should allow a user to post a secret', async () => {
-
     const agent = request.agent(app);
 
     await UserService.create({
       email:'pete@gmail.com',
       password: 'pleaseWork',
     });
-    // await agent
-    //   .post('/api/v1/users')
-    //   .send({ 
-    //     email:'pete@gmail.com',
-    //     password: 'pleaseWork',
-    //   });
-  
+
     await agent
       .post('/api/v1/users/sessions')
       .send({ 

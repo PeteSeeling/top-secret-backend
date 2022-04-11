@@ -51,6 +51,7 @@ describe('top-secret-backend routes', () => {
       email:'pete@gmail.com',
       password:'pleaseWork',
     });
+    
     const res = await request(app)
       .delete('/api/v1/users/sessions')
       .send(user);
